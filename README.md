@@ -1,5 +1,2 @@
-# 2023.12.17
-Github に主に３Dに関するテストとページを作成。
-Githubのラーニング、検証。
-
-# 2024.03.24
+# 2024.05.19
+AIコンテンツ"grayFigure" の、Google site　ページを、 Github pages に移植開始
