@@ -3,12 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Web Page</title>
+    <title>grayFigure</title>
     <style>
         body {
             margin: 0;
             font-family: Arial, sans-serif;
             color: white;
+            background-color: rgba(0, 0, 0, 0.8);
         }
 
         .container {
@@ -17,8 +18,8 @@
         }
 
         .menu {
-            width: 200px;
-            background-color: rgba(0, 0, 0, 0.5);
+            width: 150px;
+            background-color: rgba(0, 0, 0, 0.8);
             display: flex;
             flex-direction: column;
             padding: 10px;
@@ -36,7 +37,7 @@
         }
 
         .menu ul li:hover {
-            background-color: rgba(255, 255, 255, 0.2);
+            background-color: rgba(0, 0, 0, 0.5);
         }
 
         .submenu {
@@ -46,7 +47,7 @@
 
         .content {
             flex: 1;
-            background-image: url('./images/nature1.jpg');
+            /* background-image: url('./images/nature1.jpg'); */
             background-size: cover;
             background-position: center;
             padding: 20px;
@@ -61,7 +62,6 @@
             width: 100%;
             height: 1000px; /* 必要に応じて高さを調整してください */
             border: none;
-            background-color: transparent;
         }
     </style>
     <base target="_top">
@@ -89,15 +89,15 @@
             </ul>
         </nav>
         <div id="content" class="content">
-            <h1>Welcome to hatori's work</h1>
-            <p>We are posting landscapes | 風景を掲載しています。</p>
+            <h1>grayFigure</h1>
+            <p>What grayFigure =</p>
         </div>
     </div>
 
     <script>
         function loadExternalContent(url) {
             const content = document.getElementById('content');
-            content.innerHTML = `<iframe src="${url}"style="background-color: transparent;" allowtransparency="true"></iframe>`;
+            content.innerHTML = `<iframe src="${url}"></iframe>`;
         }
 
         function loadContent(page) {
