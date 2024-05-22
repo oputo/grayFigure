@@ -5,68 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>grayFigure</title>
     <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            color: white;
-            background-color: rgba(0, 0, 0, 0.8);
-        }
-
-        .container {
-            display: flex;
-            height: 100vh;
-        }
-
-        .menu {
-            width: 150px;
-            background-color: rgba(0, 0, 0, 0.8);
-            display: flex;
-            flex-direction: column;
-            padding: 10px;
-        }
-
-        .menu ul {
-            list-style-type: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        .menu ul li {
-            padding: 10px;
-            cursor: pointer;
-        }
-
-        .menu ul li:hover {
-            background-color: rgba(0, 0, 0, 0.5);
-        }
-
-        .submenu {
-            display: none;
-            padding-left: 20px;
-        }
-
-        .content {
-            flex: 1;
-            /* background-image: url('./images/nature1.jpg'); */
-            background-size: cover;
-            background-position: center;
-            padding: 20px;
-            overflow: auto;
-        }
-
-        h1, p {
-            margin: 0;
-            padding: 0;
-        }
-        #content iframe {
-            width: 100%;
-            height: 1000px; /* 必要に応じて高さを調整してください */
-            border: none;
-        }
+        @import url('https://fonts.googleapis.com/css2?family=Arvo:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+        @import url(index.css);
     </style>
     <base target="_top">
 </head>
 <body>
+    <script>
+        function loadExternalContent(url) {
+            const content = document.getElementById('content');
+            content.innerHTML = `<iframe src="${url}" style="background-color: white;"></iframe>`;
+        }
+    </script>
     <div class="container">
         <nav class="menu">
             <ul>
@@ -89,24 +39,18 @@
             </ul>
         </nav>
         <div id="content" class="content">
-            <h1>grayFigure</h1>
-            <p>What grayFigure =</p>
+            <script>loadExternalContent('./top.html');</script>
         </div>
     </div>
 
     <script>
-        function loadExternalContent(url) {
-            const content = document.getElementById('content');
-            content.innerHTML = `<iframe src="${url}"></iframe>`;
-        }
-
         function loadContent(page) {
             event.stopPropagation(); // Stop event propagation to prevent submenu toggle
             const content = document.getElementById('content');
 
             switch (page) {
                 case 'top':
-                    content.innerHTML = '<h1>トップページ</h1><p>これはトップページです。</p>';
+                    loadExternalContent('./top.html');
                     break;
 
                 case 'search':
