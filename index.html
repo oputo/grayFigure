@@ -22,6 +22,7 @@
             <ul>
                 <li onclick="loadContent('top')">grayFigure</li>
                 <li onclick="loadContent('search')">Search</li>
+                <li onclick="loadContent('img2img')">img2img</li>
                 <li onclick="toggleSubMenu('f18_sitting01Submenu')">f18_sitting
                     <ul id="f18_sitting01Submenu" class="submenu">
                         <li onclick="loadContent('femaleCatalog1')">manga01</li>
@@ -34,7 +35,6 @@
                         <li onclick="loadContent('maleCatalog2')">サブメニュー2</li>
                     </ul>
                 </li>
-                <li onclick="loadContent('contact')">Contact</li>
                 <li onclick="loadContent('back')">Back</li>
             </ul>
         </nav>
@@ -58,6 +58,10 @@
                     //content.innerHTML = '<h1>検索ページ</h1><p>これは検索ページです。</p>';
                     break;
 
+                case 'img2img':
+                    loadExternalContent('./img2img.html');
+                    break;
+
                 case 'femaleCatalog1':
                     loadExternalContent('https://script.google.com/macros/s/AKfycbwfe_xnmZef9DLZYS1JeBgzj9FgLQZ4Q5azDFJa4sHDY6O3jzGrzMsrZYRFeXHibaRM/exec?action=sheet2html&sName=gfi_f18_sitting01_manga01');
                     break;
@@ -72,10 +76,6 @@
 
                 case 'maleCatalog2':
                     content.innerHTML = '<h1>男性画像カタログ2</h1><p>これは男性画像カタログ2のページです。</p>';
-                    break;
-
-                case 'contact':
-                    content.innerHTML = '<h1>販売ページ</h1><p>これは販売ページです。</p>';
                     break;
 
                 case 'back':

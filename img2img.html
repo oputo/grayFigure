@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>img2img</title>
+    <style>
+        /* スタイルの簡単な設定 */
+        body {font-family: Arial, sans-serif;}
+
+        #chatBox {
+        width: 80%;
+        height: 400px;
+        border: 1px solid #ccc;
+        padding: 10px;
+        overflow-y: scroll;
+        margin-bottom: 10px;
+        }
+
+        #userInput {
+        width: calc(80% - 20px);
+        padding: 10px;
+        margin-bottom: 10px;
+        }
+
+        #sendBtn {
+        padding: 10px 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="chatBox"></div>
+    <input type="text" id="userInput">
+    <button id="sendBtn">送信</button>
+    
+    <!-- JavaScript ファイルの読み込み -->
+    <script src="img2img.js"></script>
+</body>
+</html>
