@@ -7,6 +7,15 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Arvo:ital,wght@0,400;0,700;1,400;1,700&display=swap');
         @import url(index.css);
+        .loading {
+            display: none;
+            position: fixed;
+            top: 10%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 256px;
+
+        }
     </style>
     <base target="_top">
 </head>
@@ -14,8 +23,27 @@
     <script>
         function loadExternalContent(url) {
             const content = document.getElementById('content');
-            content.innerHTML = `<iframe src="${url}" style="background-color: white;"></iframe>`;
+            const loadingImage = document.getElementById('loadingImage');
+
+            // Show loading image
+            loadingImage.style.display = 'block';
+
+            // Create an iframe element
+            const iframe = document.createElement('iframe');
+            iframe.src = url;
+            iframe.onload = function() {
+                // Hide loading image once the content is loaded
+                loadingImage.style.display = 'none';
+            };
+
+            // Clear previous content and add the new iframe
+            content.innerHTML = '';
+            content.appendChild(iframe);
         }
+
+        window.onload = function() {
+            loadExternalContent('./top.html');
+        };
     </script>
     <div class="container">
         <nav class="menu">
@@ -23,66 +51,54 @@
                 <li onclick="loadContent('top')">grayFigure</li>
                 <li onclick="loadContent('search')">Search</li>
                 <li onclick="loadContent('img2img')">img2img</li>
-                <li onclick="toggleSubMenu('f18_sitting01Submenu')">f18_sitting
-                    <ul id="f18_sitting01Submenu" class="submenu">
-                        <li onclick="loadContent('femaleCatalog1')">manga01</li>
-                        <li onclick="loadContent('femaleCatalog2')">manga02</li>
+                <li onclick="toggleSubMenu('f18_sitting_sub')">f18_sitting
+                    <ul id="f18_sitting_sub" class="submenu">
+                        <li onclick="loadContent('f18_sitting_manga01')">manga01</li>
+                        <li onclick="loadContent('f18_sitting_manga02')">manga02</li>
+                        <li onclick="loadContent('f18_sitting_manga03')">manga03</li>
                     </ul>
                 </li>
-                <li onclick="toggleSubMenu('m18_sitting01Submenu')">m18_sitting
-                    <ul id="m18_sitting01Submenu" class="submenu">
-                        <li onclick="loadContent('maleCatalog1')">サブメニュー1</li>
-                        <li onclick="loadContent('maleCatalog2')">サブメニュー2</li>
+                <li onclick="toggleSubMenu('m18_sitting_sub')">m18_sitting
+                    <ul id="m18_sitting_sub" class="submenu">
+                        <li onclick="loadContent('m18_sitting_manga01')">manga01</li>
                     </ul>
                 </li>
                 <li onclick="loadContent('back')">Back</li>
             </ul>
         </nav>
-        <div id="content" class="content">
-            <script>loadExternalContent('./top.html');</script>
-        </div>
+        <div id="content" class="content"></div>
+        <img id="loadingImage" src="./images/grf_image_search.jpg" class="loading" alt="Loading...">
     </div>
 
     <script>
         function loadContent(page) {
-            event.stopPropagation(); // Stop event propagation to prevent submenu toggle
-            const content = document.getElementById('content');
-
             switch (page) {
                 case 'top':
                     loadExternalContent('./top.html');
                     break;
-
                 case 'search':
-                    //content.innerHTML = '<img src="./images/grf_image_search.jpg" width="128px"><br>';
                     loadExternalContent('https://script.google.com/macros/s/AKfycbwfe_xnmZef9DLZYS1JeBgzj9FgLQZ4Q5azDFJa4sHDY6O3jzGrzMsrZYRFeXHibaRM/exec?action=search');
                     break;
-
                 case 'img2img':
                     loadExternalContent('./img2img.html');
                     break;
-
-                case 'femaleCatalog1':
+                case 'f18_sitting_manga01':
                     loadExternalContent('https://script.google.com/macros/s/AKfycbwfe_xnmZef9DLZYS1JeBgzj9FgLQZ4Q5azDFJa4sHDY6O3jzGrzMsrZYRFeXHibaRM/exec?action=sheet2html&sName=gfi_f18_sitting01_manga01');
                     break;
-
-                case 'femaleCatalog2':
+                case 'f18_sitting_manga02':
                     loadExternalContent('https://script.google.com/macros/s/AKfycbwfe_xnmZef9DLZYS1JeBgzj9FgLQZ4Q5azDFJa4sHDY6O3jzGrzMsrZYRFeXHibaRM/exec?action=sheet2html&sName=gfi_f18_sitting01_manga02');
                     break;
-
-                case 'maleCatalog1':
-                    content.innerHTML = '<h1>男性画像カタログ1</h1><p>これは男性画像カタログ1のページです。</p>';
+                case 'f18_sitting_manga03':
+                    loadExternalContent('https://script.google.com/macros/s/AKfycbwfe_xnmZef9DLZYS1JeBgzj9FgLQZ4Q5azDFJa4sHDY6O3jzGrzMsrZYRFeXHibaRM/exec?action=sheet2html&sName=gfi_f18_sitting01_manga03');
                     break;
-
-                case 'maleCatalog2':
-                    content.innerHTML = '<h1>男性画像カタログ2</h1><p>これは男性画像カタログ2のページです。</p>';
+                case 'm18_sitting_manga01':
+                    loadExternalContent('https://script.google.com/macros/s/AKfycbwfe_xnmZef9DLZYS1JeBgzj9FgLQZ4Q5azDFJa4sHDY6O3jzGrzMsrZYRFeXHibaRM/exec?action=sheet2html&sName=gfi_m18_sitting01_manga01');
                     break;
-
                 case 'back':
                     window.location.href = 'https://oputo.com/';
                     break;
                 default:
-                    content.innerHTML = '<h1>Welcome to hatori\'s work</h1><p>We are posting landscapes | 風景を掲載しています。</p>';
+                    loadExternalContent('./top.html');
             }
         }
 
