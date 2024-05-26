@@ -14,7 +14,12 @@
             left: 55%;
             transform: translate(-50%, -50%);
             width: 100px;
-
+        }
+        .submenu {
+            display: none;
+        }
+        .submenu.open {
+            display: block;
         }
     </style>
     <base target="_top">
@@ -43,35 +48,14 @@
 
         window.onload = function() {
             loadExternalContent('./top.html');
+            restoreSubMenuState();
         };
-    </script>
-    <div class="container">
-        <nav class="menu">
-            <ul>
-                <li onclick="loadContent('top')">grayFigure</li>
-                <li onclick="loadContent('search')">Search</li>
-                <li onclick="loadContent('img2img')">img2img</li>
-                <li onclick="toggleSubMenu('f18_sitting_sub')">f18_sitting
-                    <ul id="f18_sitting_sub" class="submenu">
-                        <li onclick="loadContent('f18_sitting_manga01')">manga01</li>
-                        <li onclick="loadContent('f18_sitting_manga02')">manga02</li>
-                        <li onclick="loadContent('f18_sitting_manga03')">manga03</li>
-                    </ul>
-                </li>
-                <li onclick="toggleSubMenu('m18_sitting_sub')">m18_sitting
-                    <ul id="m18_sitting_sub" class="submenu">
-                        <li onclick="loadContent('m18_sitting_manga01')">manga01</li>
-                    </ul>
-                </li>
-                <li onclick="loadContent('back')">Back</li>
-            </ul>
-        </nav>
-        <div id="content" class="content"></div>
-        <img id="loadingImage" src="./images/grf_image_search.gif" class="loading" alt="Loading...">
-    </div>
 
-    <script>
-        function loadContent(page) {
+        function loadContent(page, event) {
+            // Prevent event propagation
+            if (event) {
+                event.stopPropagation();
+            }
             switch (page) {
                 case 'top':
                     loadExternalContent('./top.html');
@@ -104,8 +88,54 @@
 
         function toggleSubMenu(submenuId) {
             const submenu = document.getElementById(submenuId);
-            submenu.style.display = submenu.style.display === 'block' ? 'none' : 'block';
+            submenu.classList.toggle('open');
+            saveSubMenuState();
+        }
+
+        function saveSubMenuState() {
+            const subMenus = document.querySelectorAll('.submenu');
+            const state = {};
+            subMenus.forEach(submenu => {
+                state[submenu.id] = submenu.classList.contains('open');
+            });
+            localStorage.setItem('subMenuState', JSON.stringify(state));
+        }
+
+        function restoreSubMenuState() {
+            const state = JSON.parse(localStorage.getItem('subMenuState'));
+            if (state) {
+                Object.keys(state).forEach(id => {
+                    const submenu = document.getElementById(id);
+                    if (state[id]) {
+                        submenu.classList.add('open');
+                    }
+                });
+            }
         }
     </script>
+    <div class="container">
+        <nav class="menu">
+            <ul>
+                <li onclick="loadContent('top')">grayFigure</li>
+                <li onclick="loadContent('search')">Search</li>
+                <li onclick="loadContent('img2img')">img2img</li>
+                <li onclick="toggleSubMenu('f18_sitting_sub')">f18_sitting
+                    <ul id="f18_sitting_sub" class="submenu">
+                        <li onclick="loadContent('f18_sitting_manga01', event)">manga01</li>
+                        <li onclick="loadContent('f18_sitting_manga02', event)">manga02</li>
+                        <li onclick="loadContent('f18_sitting_manga03', event)">manga03</li>
+                    </ul>
+                </li>
+                <li onclick="toggleSubMenu('m18_sitting_sub')">m18_sitting
+                    <ul id="m18_sitting_sub" class="submenu">
+                        <li onclick="loadContent('m18_sitting_manga01', event)">manga01</li>
+                    </ul>
+                </li>
+                <li onclick="loadContent('back')">Back</li>
+            </ul>
+        </nav>
+        <div id="content" class="content"></div>
+        <img id="loadingImage" src="./images/grf_image_search.gif" class="loading" alt="Loading...">
+    </div>
 </body>
 </html>
