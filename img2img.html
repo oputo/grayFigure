@@ -5,6 +5,7 @@
     <title>img2img</title>
     <style>
         /* スタイルの簡単な設定 */
+        /*
         body {font-family: Arial, sans-serif;}
 
         #chatBox {
@@ -25,14 +26,17 @@
         #sendBtn {
         padding: 10px 20px;
         }
+        */
     </style>
 </head>
 <body>
-    <div id="chatBox"></div>
-    <input type="text" id="userInput">
-    <button id="sendBtn">送信</button>
-    
-    <!-- JavaScript ファイルの読み込み -->
-    <script src="img2img.js"></script>
+    <script
+	type="module"
+	src="https://gradio.s3-us-west-2.amazonaws.com/4.20.0/gradio.js"
+></script>
+
+<gradio-app src="https://oputo-animagine-xl-3-1.hf.space"></gradio-app>
+
+
 </body>
 </html>
