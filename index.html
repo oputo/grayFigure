@@ -72,6 +72,9 @@
                 case 'f18_sitting01_manga02':
                     loadExternalContent('https://script.google.com/macros/s/AKfycbwfe_xnmZef9DLZYS1JeBgzj9FgLQZ4Q5azDFJa4sHDY6O3jzGrzMsrZYRFeXHibaRM/exec?action=sheet2html&sName=gfi_f18_sitting01_manga02');
                     break;
+                case 'f18_running01_manga01':
+                    loadExternalContent('https://script.google.com/macros/s/AKfycbwfe_xnmZef9DLZYS1JeBgzj9FgLQZ4Q5azDFJa4sHDY6O3jzGrzMsrZYRFeXHibaRM/exec?action=sheet2html&sName=gfi_f18_running01_manga01');
+                    break;
                 case 'm18_sitting01_manga01':
                     loadExternalContent('https://script.google.com/macros/s/AKfycbwfe_xnmZef9DLZYS1JeBgzj9FgLQZ4Q5azDFJa4sHDY6O3jzGrzMsrZYRFeXHibaRM/exec?action=sheet2html&sName=gfi_m18_sitting01_manga01');
                     break;
@@ -123,6 +126,11 @@
                     <ul id="f18_sitting01_sub" class="submenu">
                         <li onclick="loadContent('f18_sitting01_manga01', event)">manga01</li>
                         <li onclick="loadContent('f18_sitting01_manga02', event)">manga02</li>
+                    </ul>
+                </li>
+                <li onclick="toggleSubMenu('f18_running01_sub')">f18_running01
+                    <ul id="f18_running01_sub" class="submenu">
+                        <li onclick="loadContent('f18_running01_manga01', event)">manga01</li>
                     </ul>
                 </li>
                 <li onclick="toggleSubMenu('m18_sitting01_sub')">m18_sitting01
