@@ -99,6 +99,27 @@
                 case 'm18_sitting01_manga02':
                     loadExternalContent('https://script.google.com/macros/s/AKfycbwfe_xnmZef9DLZYS1JeBgzj9FgLQZ4Q5azDFJa4sHDY6O3jzGrzMsrZYRFeXHibaRM/exec?action=sheet2html&sName=gfi_m18_sitting01_manga02');
                     break;
+                case 'm18_sitting01_manga03':
+                    loadExternalContent('https://script.google.com/macros/s/AKfycbwfe_xnmZef9DLZYS1JeBgzj9FgLQZ4Q5azDFJa4sHDY6O3jzGrzMsrZYRFeXHibaRM/exec?action=sheet2html&sName=gfi_m18_sitting01_manga03');
+                    break;
+                case 'm18_running01_manga01':
+                    loadExternalContent('https://script.google.com/macros/s/AKfycbwfe_xnmZef9DLZYS1JeBgzj9FgLQZ4Q5azDFJa4sHDY6O3jzGrzMsrZYRFeXHibaRM/exec?action=sheet2html&sName=gfi_m18_running01_manga01');
+                    break;
+                case 'm18_running01_manga02':
+                    loadExternalContent('https://script.google.com/macros/s/AKfycbwfe_xnmZef9DLZYS1JeBgzj9FgLQZ4Q5azDFJa4sHDY6O3jzGrzMsrZYRFeXHibaRM/exec?action=sheet2html&sName=gfi_m18_running01_manga02');
+                    break;
+                case 'm18_running01_manga03':
+                    loadExternalContent('https://script.google.com/macros/s/AKfycbwfe_xnmZef9DLZYS1JeBgzj9FgLQZ4Q5azDFJa4sHDY6O3jzGrzMsrZYRFeXHibaRM/exec?action=sheet2html&sName=gfi_m18_running01_manga03');
+                    break;
+                case 'm18_free01_manga01':
+                    loadExternalContent('https://script.google.com/macros/s/AKfycbwfe_xnmZef9DLZYS1JeBgzj9FgLQZ4Q5azDFJa4sHDY6O3jzGrzMsrZYRFeXHibaRM/exec?action=sheet2html&sName=gfi_m18_free01_manga01');
+                    break;
+                case 'm18_free01_manga02':
+                    loadExternalContent('https://script.google.com/macros/s/AKfycbwfe_xnmZef9DLZYS1JeBgzj9FgLQZ4Q5azDFJa4sHDY6O3jzGrzMsrZYRFeXHibaRM/exec?action=sheet2html&sName=gfi_m18_free01_manga02');
+                    break;
+                case 'm18_free01_manga03':
+                    loadExternalContent('https://script.google.com/macros/s/AKfycbwfe_xnmZef9DLZYS1JeBgzj9FgLQZ4Q5azDFJa4sHDY6O3jzGrzMsrZYRFeXHibaRM/exec?action=sheet2html&sName=gfi_m18_free01_manga03');
+                    break;
                 case 'back':
                     window.location.href = 'https://oputo.com/';
                     break;
@@ -165,6 +186,21 @@
                     <ul id="m18_sitting01_sub" class="submenu">
                         <li onclick="loadContent('m18_sitting01_manga01', event)">manga01</li>
                         <li onclick="loadContent('m18_sitting01_manga02', event)">manga02</li>
+                        <li onclick="loadContent('m18_sitting01_manga03', event)">manga03</li>
+                    </ul>
+                </li>
+                <li onclick="toggleSubMenu('m18_running01_sub')">m18_running01
+                    <ul id="m18_running01_sub" class="submenu">
+                        <li onclick="loadContent('m18_running01_manga01', event)">manga01</li>
+                        <li onclick="loadContent('m18_running01_manga02', event)">manga02</li>
+                        <li onclick="loadContent('m18_running01_manga03', event)">manga03</li>
+                    </ul>
+                </li>
+                <li onclick="toggleSubMenu('m18_free01_sub')">m18_free01
+                    <ul id="m18_free01_sub" class="submenu">
+                        <li onclick="loadContent('m18_free01_manga01', event)">manga01</li>
+                        <li onclick="loadContent('m18_free01_manga02', event)">manga02</li>
+                        <li onclick="loadContent('m18_free01_manga03', event)">manga03</li>
                     </ul>
                 </li>
                 <li onclick="loadContent('back')">Back</li>
