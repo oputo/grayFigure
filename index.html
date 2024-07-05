@@ -15,10 +15,10 @@
             transform: translate(-50%, -50%);
             width: 100px;
         }
-        .submenu {
+        .submenu, .subsubmenu {
             display: none;
         }
-        .submenu.open {
+        .submenu.open, .subsubmenu.open {
             display: block;
         }
     </style>
@@ -188,11 +188,25 @@
             saveSubMenuState();
         }
 
+        function toggleSubSubMenu(subsubmenuId, event) {
+            // Prevent event propagation to parent menus
+            if (event) {
+                event.stopPropagation();
+            }
+            const subsubmenu = document.getElementById(subsubmenuId);
+            subsubmenu.classList.toggle('open');
+            saveSubMenuState();
+        }
+
         function saveSubMenuState() {
             const subMenus = document.querySelectorAll('.submenu');
+            const subSubMenus = document.querySelectorAll('.subsubmenu');
             const state = {};
             subMenus.forEach(submenu => {
                 state[submenu.id] = submenu.classList.contains('open');
+            });
+            subSubMenus.forEach(subsubmenu => {
+                state[subsubmenu.id] = subsubmenu.classList.contains('open');
             });
             localStorage.setItem('subMenuState', JSON.stringify(state));
         }
@@ -211,96 +225,119 @@
     </script>
     <div class="container">
         <nav class="menu">
+        <h3>
             <ul>
                 <li onclick="loadContent('top')">grayFigure</li>
                 <li onclick="loadContent('search')">Search</li>
-<!--                <li onclick="loadContent('img2img')">img2img</li>  -->
-                <li onclick="toggleSubMenu('f06_sitting01_sub')">f06_sitting01
-                    <ul id="f06_sitting01_sub" class="submenu">
-                        <li onclick="loadContent('f06_sitting01_manga01', event)">manga01</li>
-                        <li onclick="loadContent('f06_sitting01_manga02', event)">manga02</li>
-                        <li onclick="loadContent('f06_sitting01_manga03', event)">manga03</li>
+                <li onclick="toggleSubMenu('female_age6_sub')">female_age6
+                    <ul id="female_age6_sub" class="submenu">
+                        <li onclick="toggleSubSubMenu('f06_sitting01_sub', event)"><h4>sitting01</h4>
+                            <ul id="f06_sitting01_sub" class="subsubmenu">
+                                <h5>
+                                <li onclick="loadContent('f06_sitting01_manga01', event)">manga01</li>
+                                <li onclick="loadContent('f06_sitting01_manga02', event)">manga02</li>
+                                <li onclick="loadContent('f06_sitting01_manga03', event)">manga03</li>
+                                </h5>
+                            </ul>
+                        </li>
+                        <li onclick="toggleSubSubMenu('f06_running01_sub', event)"><h4>running01</h4>
+                            <ul id="f06_running01_sub" class="subsubmenu">
+                                <h5>
+                                    <li onclick="loadContent('f06_running01_manga01', event)">manga01</li>
+                                    <li onclick="loadContent('f06_running01_manga02', event)">manga02</li>
+                                    <li onclick="loadContent('f06_running01_manga03', event)">manga03</li>
+                                </h5>
+                            </ul>
+                        </li>
+                        <li onclick="toggleSubSubMenu('f06_free01_sub', event)"><h4>free01</h4>
+                            <ul id="f06_free01_sub" class="subsubmenu">
+                                <h5>
+                                    <li onclick="loadContent('f06_free01_manga01', event)">manga01</li>
+                                    <li onclick="loadContent('f06_free01_manga02', event)">manga02</li>
+                                    <li onclick="loadContent('f06_free01_manga03', event)">manga03</li>
+                                </h5>
+                            </ul>
+                        </li>
                     </ul>
                 </li>
-                <li onclick="toggleSubMenu('f06_running01_sub')">f06_running01
-                    <ul id="f06_running01_sub" class="submenu">
-                        <li onclick="loadContent('f06_running01_manga01', event)">manga01</li>
-                        <li onclick="loadContent('f06_running01_manga02', event)">manga02</li>
-                        <li onclick="loadContent('f06_running01_manga03', event)">manga03</li>
+                <li onclick="toggleSubMenu('male_age6_sub')">male_age6
+                    <ul id="male_age6_sub" class="submenu">
+                        <li onclick="toggleSubSubMenu('m06_sitting01_sub', event)">sitting01
+                            <ul id="m06_sitting01_sub" class="subsubmenu">
+                                <li onclick="loadContent('m06_sitting01_manga01', event)">manga01</li>
+                                <li onclick="loadContent('m06_sitting01_manga02', event)">manga02</li>
+                                <li onclick="loadContent('m06_sitting01_manga03', event)">manga03</li>
+                            </ul>
+                        </li>
+                        <li onclick="toggleSubSubMenu('m06_running01_sub', event)">running01
+                            <ul id="m06_running01_sub" class="subsubmenu">
+                                <li onclick="loadContent('m06_running01_manga01', event)">manga01</li>
+                                <li onclick="loadContent('m06_running01_manga02', event)">manga02</li>
+                                <li onclick="loadContent('m06_running01_manga03', event)">manga03</li>
+                            </ul>
+                        </li>
+                        <li onclick="toggleSubSubMenu('m06_free01_sub', event)">free01
+                            <ul id="m06_free01_sub" class="subsubmenu">
+                                <li onclick="loadContent('m06_free01_manga01', event)">manga01</li>
+                                <li onclick="loadContent('m06_free01_manga02', event)">manga02</li>
+                                <li onclick="loadContent('m06_free01_manga03', event)">manga03</li>
+                            </ul>
+                        </li>
                     </ul>
                 </li>
-                <li onclick="toggleSubMenu('f06_free01_sub')">f06_free01
-                    <ul id="f06_free01_sub" class="submenu">
-                        <li onclick="loadContent('f06_free01_manga01', event)">manga01</li>
-                        <li onclick="loadContent('f06_free01_manga02', event)">manga02</li>
-                        <li onclick="loadContent('f06_free01_manga03', event)">manga03</li>
+                <li onclick="toggleSubMenu('female_age18_sub')">female_age18
+                    <ul id="female_age18_sub" class="submenu">
+                        <li onclick="toggleSubSubMenu('f18_sitting01_sub', event)">sitting01
+                            <ul id="f18_sitting01_sub" class="subsubmenu">
+                                <li onclick="loadContent('f18_sitting01_manga01', event)">manga01</li>
+                                <li onclick="loadContent('f18_sitting01_manga02', event)">manga02</li>
+                                <li onclick="loadContent('f18_sitting01_manga03', event)">manga03</li>
+                            </ul>
+                        </li>
+                        <li onclick="toggleSubSubMenu('f18_running01_sub', event)">running01
+                            <ul id="f18_running01_sub" class="subsubmenu">
+                                <li onclick="loadContent('f18_running01_manga01', event)">manga01</li>
+                                <li onclick="loadContent('f18_running01_manga02', event)">manga02</li>
+                                <li onclick="loadContent('f18_running01_manga03', event)">manga03</li>
+                            </ul>
+                        </li>
+                        <li onclick="toggleSubSubMenu('f18_free01_sub', event)">free01
+                            <ul id="f18_free01_sub" class="subsubmenu">
+                                <li onclick="loadContent('f18_free01_manga01', event)">manga01</li>
+                                <li onclick="loadContent('f18_free01_manga02', event)">manga02</li>
+                                <li onclick="loadContent('f18_free01_manga03', event)">manga03</li>
+                            </ul>
+                        </li>
                     </ul>
                 </li>
-                <li onclick="toggleSubMenu('m06_sitting01_sub')">m06_sitting01
-                    <ul id="m06_sitting01_sub" class="submenu">
-                        <li onclick="loadContent('m06_sitting01_manga01', event)">manga01</li>
-                        <li onclick="loadContent('m06_sitting01_manga02', event)">manga02</li>
-                        <li onclick="loadContent('m06_sitting01_manga03', event)">manga03</li>
-                    </ul>
-                </li>
-                <li onclick="toggleSubMenu('m06_running01_sub')">m06_running01
-                    <ul id="m06_running01_sub" class="submenu">
-                        <li onclick="loadContent('m06_running01_manga01', event)">manga01</li>
-                        <li onclick="loadContent('m06_running01_manga02', event)">manga02</li>
-                        <li onclick="loadContent('m06_running01_manga03', event)">manga03</li>
-                    </ul>
-                </li>
-                <li onclick="toggleSubMenu('m06_free01_sub')">m06_free01
-                    <ul id="m06_free01_sub" class="submenu">
-                        <li onclick="loadContent('m06_free01_manga01', event)">manga01</li>
-                        <li onclick="loadContent('m06_free01_manga02', event)">manga02</li>
-                        <li onclick="loadContent('m06_free01_manga03', event)">manga03</li>
-                    </ul>
-                </li>
-                <li onclick="toggleSubMenu('f18_sitting01_sub')">f18_sitting01
-                    <ul id="f18_sitting01_sub" class="submenu">
-                        <li onclick="loadContent('f18_sitting01_manga01', event)">manga01</li>
-                        <li onclick="loadContent('f18_sitting01_manga02', event)">manga02</li>
-                        <li onclick="loadContent('f18_sitting01_manga03', event)">manga03</li>
-                    </ul>
-                </li>
-                <li onclick="toggleSubMenu('f18_running01_sub')">f18_running01
-                    <ul id="f18_running01_sub" class="submenu">
-                        <li onclick="loadContent('f18_running01_manga01', event)">manga01</li>
-                        <li onclick="loadContent('f18_running01_manga02', event)">manga02</li>
-                        <li onclick="loadContent('f18_running01_manga03', event)">manga03</li>
-                    </ul>
-                </li>
-                <li onclick="toggleSubMenu('f18_free01_sub')">f18_free01
-                    <ul id="f18_free01_sub" class="submenu">
-                        <li onclick="loadContent('f18_free01_manga01', event)">manga01</li>
-                        <li onclick="loadContent('f18_free01_manga02', event)">manga02</li>
-                        <li onclick="loadContent('f18_free01_manga03', event)">manga03</li>
-                    </ul>
-                </li>
-                <li onclick="toggleSubMenu('m18_sitting01_sub')">m18_sitting01
-                    <ul id="m18_sitting01_sub" class="submenu">
-                        <li onclick="loadContent('m18_sitting01_manga01', event)">manga01</li>
-                        <li onclick="loadContent('m18_sitting01_manga02', event)">manga02</li>
-                        <li onclick="loadContent('m18_sitting01_manga03', event)">manga03</li>
-                    </ul>
-                </li>
-                <li onclick="toggleSubMenu('m18_running01_sub')">m18_running01
-                    <ul id="m18_running01_sub" class="submenu">
-                        <li onclick="loadContent('m18_running01_manga01', event)">manga01</li>
-                        <li onclick="loadContent('m18_running01_manga02', event)">manga02</li>
-                        <li onclick="loadContent('m18_running01_manga03', event)">manga03</li>
-                    </ul>
-                </li>
-                <li onclick="toggleSubMenu('m18_free01_sub')">m18_free01
-                    <ul id="m18_free01_sub" class="submenu">
-                        <li onclick="loadContent('m18_free01_manga01', event)">manga01</li>
-                        <li onclick="loadContent('m18_free01_manga02', event)">manga02</li>
-                        <li onclick="loadContent('m18_free01_manga03', event)">manga03</li>
+                <li onclick="toggleSubMenu('male_age18_sub')">male_age18
+                    <ul id="male_age18_sub" class="submenu">
+                        <li onclick="toggleSubSubMenu('m18_sitting01_sub', event)">sitting01
+                            <ul id="m18_sitting01_sub" class="subsubmenu">
+                                <li onclick="loadContent('m18_sitting01_manga01', event)">manga01</li>
+                                <li onclick="loadContent('m18_sitting01_manga02', event)">manga02</li>
+                                <li onclick="loadContent('m18_sitting01_manga03', event)">manga03</li>
+                            </ul>
+                        </li>
+                        <li onclick="toggleSubSubMenu('m18_running01_sub', event)">running01
+                            <ul id="m18_running01_sub" class="subsubmenu">
+                                <li onclick="loadContent('m18_running01_manga01', event)">manga01</li>
+                                <li onclick="loadContent('m18_running01_manga02', event)">manga02</li>
+                                <li onclick="loadContent('m18_running01_manga03', event)">manga03</li>
+                            </ul>
+                        </li>
+                        <li onclick="toggleSubSubMenu('m18_free01_sub', event)">free01
+                            <ul id="m18_free01_sub" class="subsubmenu">
+                                <li onclick="loadContent('m18_free01_manga01', event)">manga01</li>
+                                <li onclick="loadContent('m18_free01_manga02', event)">manga02</li>
+                                <li onclick="loadContent('m18_free01_manga03', event)">manga03</li>
+                            </ul>
+                        </li>
                     </ul>
                 </li>
                 <li onclick="loadContent('back')">Back</li>
             </ul>
+        </h3>
         </nav>
         <div id="content" class="content"></div>
         <img id="loadingImage" src="./images/icon/grf_image_search.gif" class="loading" alt="Loading...">
