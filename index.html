@@ -63,8 +63,8 @@
                 case 'search':
                     loadExternalContent('https://script.google.com/macros/s/AKfycbwfe_xnmZef9DLZYS1JeBgzj9FgLQZ4Q5azDFJa4sHDY6O3jzGrzMsrZYRFeXHibaRM/exec?action=search');
                     break;
-                case 'img2img':
-                    loadExternalContent('./img2img.html');
+                case 'txt2img':
+                    loadExternalContent('./fal-ai_fast-sdxl.html');
                     break;
                 case 'f06_sitting01_manga01':
                     loadExternalContent('https://script.google.com/macros/s/AKfycbwfe_xnmZef9DLZYS1JeBgzj9FgLQZ4Q5azDFJa4sHDY6O3jzGrzMsrZYRFeXHibaRM/exec?action=sheet2html&sName=gfi_f06_sitting01_manga01');
@@ -229,6 +229,7 @@
             <ul>
                 <li onclick="loadContent('top')">grayFigure</li>
                 <li onclick="loadContent('search')">Search</li>
+                <li onclick="loadContent('txt2img')">txt2img</li>
                 <li onclick="toggleSubMenu('female_age6_sub')">female_age6
                     <ul id="female_age6_sub" class="submenu">
                         <li onclick="toggleSubSubMenu('f06_sitting01_sub', event)"><h4>sitting01</h4>
